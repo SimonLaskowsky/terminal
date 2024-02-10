@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', function () {
     let historyIndex = -1;
     let commandAndHintAreEqual = false;
 
+    terminalWindow.scrollTop = terminalWindow.scrollHeight;
+
     // Get random quote from api
     const fetchQuote = async () => {
         const response = await fetch('https://dummyjson.com/quotes/random');
@@ -36,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Build in commands
     const COMMANDS = {
         ...CUSTOM_COMMANDS,
+        about: 'Wiem że projekt delikatnie różni się od proponowanego designu, postanowiłem trochę zaszaleć ;) dodatkowe funkcjonalności: <br> -wrażenie pisania w terminalu <br> -możliwość autouzupełnienia podpowiadanej komendy przy użyciu enter / tab <br> -czyż ten czerowny przycisk nie jest kuszący?',
         clear: function() {
             output.innerHTML = "";
             return;
@@ -86,6 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
         // Fill our typing with hint by enter or tab but only when hint is showed and we didnt wrote whole command 
         } else if ((e.key === "Enter" || e.key === "Tab") && isHintShowed && !commandAndHintAreEqual){
+            e.preventDefault()
             userMessage.innerHTML = hintMessage;
             hideHints();
 
