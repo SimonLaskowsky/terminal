@@ -194,7 +194,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     
         output.innerHTML = `${output.innerHTML}<div class="message">${outputMessage}</div>`;
-    
         terminalWindow.scrollTop = terminalWindow.scrollHeight;
     
         if (command.length > 0) {
