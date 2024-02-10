@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Build in commands
     const COMMANDS = {
         ...CUSTOM_COMMANDS,
-        about: 'Wiem że projekt delikatnie różni się od proponowanego designu, postanowiłem trochę zaszaleć ;) dodatkowe funkcjonalności: <br> -wrażenie pisania w terminalu <br> -możliwość autouzupełnienia podpowiadanej komendy przy użyciu enter / tab <br> -czyż ten czerowny przycisk nie jest kuszący?',
+        about: 'Wiem że projekt delikatnie różni się od proponowanego designu, postanowiłem trochę zaszaleć ;) dodatkowe funkcjonalności: <br> -wrażenie pisania w terminalu <br> -możliwość autouzupełnienia podpowiadanej komendy przy użyciu enter / tab',
         clear: function() {
             output.innerHTML = "";
             return;
