@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         help: function() {
             const commandsList = Object.keys(COMMANDS).join(', ');
-            return `Available commands ${commandsList}`;
+            return `Available commands: ${commandsList}`;
         },
         quote: async function() {
             try {
@@ -105,8 +105,8 @@ document.addEventListener('DOMContentLoaded', function () {
             userMessage.innerHTML = userMessage.innerHTML.slice(0, userMessage.innerHTML.length - 1);
             showHints(userMessage.innerHTML);
 
-        // We take: caps letters, normal letters, numbers and space
-        } else if(e.keyCode >= 65 && e.keyCode <= 90 || e.keyCode >= 97 && e.keyCode <= 122 || e.keyCode >= 48 && e.keyCode <= 57 || e.keyCode == 32 ) {
+        // We take: caps letters, normal letters, numbers and space (but only if its not first character in userMesage placeholder)
+        } else if(e.keyCode >= 65 && e.keyCode <= 90 || e.keyCode >= 97 && e.keyCode <= 122 || e.keyCode >= 48 && e.keyCode <= 57 || e.keyCode == 32 && !userMessage.innerHTML == "" ) {
             userMessage.innerHTML += e.key;
             showHints(userMessage.innerHTML);
         }
