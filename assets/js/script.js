@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.messageHint = document.getElementById("messageHint");
     output = document.getElementById("output");
     terminalWindow = document.getElementById("terminalWindow");
+    const lastLoginMessage = document.getElementById("lastLogin");
     document.getElementById("userMessageInput").focus();
     const closeBtn = document.querySelector('.close');
     const minBtn = document.querySelector('.min');
@@ -201,4 +202,13 @@ document.addEventListener('DOMContentLoaded', function () {
             historyIndex = -1;
         }
     };
+
+    const displayLastLogin = () => {
+        const currentDate = new Date();
+        const lastLoginInfo = `Last login: ${currentDate.toUTCString()}`;
+        if (lastLoginMessage) {
+            lastLoginMessage.innerHTML = lastLoginInfo;
+        }
+    };
+    displayLastLogin();
 });
