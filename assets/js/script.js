@@ -15,6 +15,51 @@ document.addEventListener('DOMContentLoaded', function () {
     let historyIndex = -1;
     let commandAndHintAreEqual = false;
 
+    // Get random quote from api
+    const fetchQuote = async () => {
+        const response = await fetch('https://dummyjson.com/quotes/random');
+        if (!response.ok) {
+            throw new Error('Failed to fetch quote');
+        }
+        const data = await response.json();
+        return data.quote;
+    };
+
+    // Custom commands
+    const CUSTOM_COMMANDS = {
+        hello: {
+            msg: 'Hello :)',
+        },
+        // Add more custom commands as needed
+    };
+
+    // Build in commands
+    const COMMANDS = {
+        ...CUSTOM_COMMANDS,
+        clear: function() {
+            output.innerHTML = "";
+            return;
+        },
+        help: function() {
+            const commandsList = Object.keys(COMMANDS).join(', ');
+            return `Available commands ${commandsList}`;
+        },
+        quote: async function() {
+            try {
+                const quote = await fetchQuote();
+                return quote;
+            } catch (error) {
+                return error.message;
+            }
+        },
+        double: function(number) {
+            if (!number || isNaN(number)) {
+                return 'Usage: double [number]';
+            }
+            return parseFloat(number) * 2;
+        }
+    };
+
     // Menu buttons handling - little easter egg
     closeBtn.addEventListener('click', function() {
         window.close();
@@ -121,14 +166,20 @@ document.addEventListener('DOMContentLoaded', function () {
         const commandName = commandParts[0];
         const args = commandParts.slice(1);
     
+        // Check if it's a custom command
+        if (CUSTOM_COMMANDS.hasOwnProperty(commandName)) {
+        outputMessage += `<div class="message">${CUSTOM_COMMANDS[commandName].msg}</div>`;
+
         // We don't have this command
-        if (!COMMANDS.hasOwnProperty(commandName)) {
+        } else if (!COMMANDS.hasOwnProperty(commandName)) {
             outputMessage += `<div class="message">no such command: <span class="output">"${commandName}"</span></div>`;
+        
         } else {
             // It's a function
             if (typeof COMMANDS[commandName] === 'function') {
                 const result = await COMMANDS[commandName](...args);
 
+                // It isnt void funtion
                 if(result !== undefined) {
                     outputMessage += `<div class="message">${result}</div>`;
                 }
@@ -147,40 +198,3 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 });
-
-// Get random quote from api
-const fetchQuote = async () => {
-    const response = await fetch('https://dummyjson.com/quotes/random');
-    if (!response.ok) {
-        throw new Error('Failed to fetch quote');
-    }
-    const data = await response.json();
-    return data.quote;
-};
-
-// Build in commands
-const COMMANDS = {
-    hello: 'Hello :)',
-    clear: function() {
-        output.innerHTML = "";
-        return;
-    },
-    help: function() {
-        const commandsList = Object.keys(COMMANDS).join(', ');
-        return `Available commands ${commandsList}`;
-    },
-    quote: async function() {
-        try {
-            const quote = await fetchQuote();
-            return quote;
-        } catch (error) {
-            return error.message;
-        }
-    },
-    double: function(number) {
-        if (!number || isNaN(number)) {
-            return 'Usage: double [number]';
-        }
-        return parseFloat(number) * 2;
-    }
-};
