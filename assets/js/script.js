@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Build in commands
     const COMMANDS = {
         ...CUSTOM_COMMANDS,
-        about: 'Wiem że projekt delikatnie różni się od proponowanego designu, postanowiłem trochę zaszaleć ;) dodatkowe funkcjonalności: <br> -wrażenie pisania w terminalu <br> -możliwość autouzupełnienia podpowiadanej komendy przy użyciu enter / tab',
+        about: 'Z wielką przyjemnością prezentuje ✨terminal✨ funkcjonalności / działanie programu: <br> -wrażenie pisania w terminalu <br> -możliwość autouzupełnienia podpowiadanej komendy przy użyciu enter / tab <br> -historia komend za pomocą strzałek góra, dół <br> -komenda quote pobiera i wyświetla losowy cytat a API <br> -małym smaczkiem są również działąjące przyciski minimalizowania i pełnego ekranu',
         clear: function() {
             output.innerHTML = "";
             return;
