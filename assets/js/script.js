@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Build in commands
     const COMMANDS = {
         ...CUSTOM_COMMANDS,
-        about: 'Z wielką przyjemnością prezentuje ✨terminal✨ funkcjonalności / działanie programu: <br> -wrażenie pisania w terminalu <br> -możliwość autouzupełnienia podpowiadanej komendy przy użyciu enter / tab <br> -historia komend za pomocą strzałek góra, dół <br> -komenda quote pobiera i wyświetla losowy cytat a API <br> -małym smaczkiem są również działąjące przyciski minimalizowania i pełnego ekranu',
+        about: 'Z wielką przyjemnością prezentuje ✨terminal✨ funkcjonalności / działanie programu: <br> -wrażenie pisania w terminalu <br> -możliwość autouzupełnienia podpowiadanej komendy przy użyciu enter / tab <br> -historia komend za pomocą strzałek góra, dół <br> -komenda quote pobiera i wyświetla losowy cytat a API <br> -małym smaczkiem są również działąjące przyciski minimalizowania i pełnego ekranu, przycisk zamknięcia działa tylko w okeślonych przypadkach ze względu na ograniczenia Jsa na modyfikacje przeglądarki',
         clear: function() {
             output.innerHTML = "";
             return;
